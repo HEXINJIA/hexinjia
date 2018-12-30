@@ -1,4 +1,4 @@
-import ToastComponet from "./h-mobile-toast.vue"
+import ToastComponet from "./hxj-mobile-toast.vue"
  let Toast ={};
 Toast.install=function(Vue,options){
     var opt={

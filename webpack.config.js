@@ -5,9 +5,9 @@ module.exports = {
     output:{
         path:path.join(__dirname,'./dist'),
         publicPath:'',
-        filename:'vue-toast-hm.js',
+        filename:'hxj-mobile-toast.js',
         libraryTarget: "umd",
-        library: 'VueToastHm'
+        library: 'hxjMobileToast'
     },
     module:{
         rules:[
