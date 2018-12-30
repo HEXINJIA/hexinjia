@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <script type="text/javascript" src="./../node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="./../dist/vue-toast-hm.js"></script>
+</head>
+<body>
+<div id="app">
+    <a href="javascript:;" @click="toast">点击弹出Toast</a>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        methods:{
+            toast:function(){
+               this.$toast.show("你好，toast")
+            }
+        }
+    })
+</script>
+</body>
+</html>
