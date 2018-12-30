@@ -1,6 +1,6 @@
 {
   "name": "hxj-mobile-toast",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "a toast plugin for mobile",
   "main": "index.js",
   "scripts": {
@@ -31,5 +31,9 @@
     "uglifyjs-webpack-plugin": "^0.4.6",
     "vue-loader": "^13.0.0",
     "vue-template-compiler": "^2.3.4"
+  },
+  "repository":{
+    "type" : "git",
+    "url" : "https://github.com/HEXINJIA/mobile-toast.git"
   }
 }
