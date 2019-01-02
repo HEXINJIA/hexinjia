@@ -1,4 +1,4 @@
-# vue-toast
+# hxj-mobile-toast
 
 A mobile toast plugin for vue.
 
@@ -14,7 +14,7 @@ It's simple.
 
 //first import plugin
 
-import VueToast    from 'vue-toast-m'
+import VueToast    from 'hxj-mobile-toast'
 
 //and register the plugin on vue.
 
