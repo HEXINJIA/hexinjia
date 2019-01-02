@@ -1,40 +1,49 @@
-import ToastComponet from "./hxj-mobile-toast.vue"
- let Toast ={};
-Toast.install=function(Vue,options){
-    var opt={
-        duration :3000
+/**
+ * @desc a toast plugin for mobile
+ */
+import ToastComponent from './toast.vue'
+var Toast = {};
+Toast.install = function (Vue, options) {
+    var opt = {
+        defaultType:'center',
+        duration:'3000'
     }
-    for(var key in options){
-        opt[key]=options[key];
+    for(var property in options){
+        opt[property] = options[property];
     }
-    Vue.prototype.$toast=function(massage,option){
-        if(typeof option=="object"){
-            for(var key in option){
-                opt[key]=option[key];
+    Vue.prototype.$toast = function(message,option){
+
+        let callback = '';
+        //设置局部配置
+        if(typeof option == 'object'){
+            for(var property in option){
+              opt[property] = option[property];
             }
+        }else if(typeof option == 'function'){
+          callback = option;
         }
-        const ToastController=Vue.extend(ToastComponet)
-        var instance=new ToastController().$mount(document.createElement("div"))
-        instance.message=massage
-        instance.visible=true;
-        document.body.appendChild(instance.$el)
-        setTimeout(()=>{
-            instance.visible=false;
-            document.body.removeChild(instance.$el)
-        },opt.duration)
-    }
-    Vue.prototype.$toast['show']=function(massage,option){
-        Vue.prototype.$toast(massage,option)
-    }
-    Vue.prototype.$toast['info']=function(){
-        Vue.prototype.$toast(massage,option)
-    }
-    Vue.prototype.$toast['error']=function(){
-        Vue.prototype.$toast(massage,option)
-    }
-    Vue.prototype.$toast['success']=function(){
-        Vue.prototype.$toast(massage,option)
-    }
+
+        const ToastController = Vue.extend(ToastComponent);
+
+        var instance = new ToastController().$mount(document.createElement("div"));
+        instance.message = message;
+        instance.visible = true;
+        document.body.appendChild(instance.$el);
+        setTimeout(function () {
+            instance.visible = false;
+            setTimeout(()=>{
+              document.body.removeChild(instance.$el);
+              callback && callback();
+            },500);
+        }, opt.duration)
+    };
+    //后期扩展
+    ['show', 'success', 'info', 'error'].forEach(function(type) {
+        Vue.prototype.$toast[type] = function(tips,option) {
+            return Vue.prototype.$toast(tips,option)
+        }
+    });
+
 }
 if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(Toast);

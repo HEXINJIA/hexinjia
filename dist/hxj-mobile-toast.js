@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["hxjMobileToast"] = factory();
+		exports["VueToastM"] = factory();
 	else
-		root["hxjMobileToast"] = factory();
+		root["VueToastM"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -75,34 +75,27 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
+//
+//
+//
+//
+//
+//
+//
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
+/* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'toast',
+  data() {
+    return {
+      visible: true,
+      message: ''
+    };
+  }
 });
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    name: "",
-    data: function data() {
-        return {
-            message: "",
-            visible: false
-        };
-    },
-    created: function created() {},
-    mounted: function mounted() {}
-};
 
 /***/ }),
 /* 1 */
@@ -115,50 +108,58 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
+                                                                                                                                                                                                                                                                               * @desc a toast plugin for mobile
+                                                                                                                                                                                                                                                                               */
 
-var _hxjMobileToast = __webpack_require__(2);
 
-var _hxjMobileToast2 = _interopRequireDefault(_hxjMobileToast);
+var _toast = __webpack_require__(2);
+
+var _toast2 = _interopRequireDefault(_toast);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Toast = {};
 Toast.install = function (Vue, options) {
     var opt = {
-        duration: 3000
+        defaultType: 'center',
+        duration: '3000'
     };
-    for (var key in options) {
-        opt[key] = options[key];
+    for (var property in options) {
+        opt[property] = options[property];
     }
-    Vue.prototype.$toast = function (massage, option) {
-        if ((typeof option === "undefined" ? "undefined" : _typeof(option)) == "object") {
-            for (var key in option) {
-                opt[key] = option[key];
+    Vue.prototype.$toast = function (message, option) {
+
+        var callback = '';
+        //设置局部配置
+        if ((typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object') {
+            for (var property in option) {
+                opt[property] = option[property];
             }
+        } else if (typeof option == 'function') {
+            callback = option;
         }
-        var ToastController = Vue.extend(_hxjMobileToast2.default);
+
+        var ToastController = Vue.extend(_toast2.default);
+
         var instance = new ToastController().$mount(document.createElement("div"));
-        instance.message = massage;
+        instance.message = message;
         instance.visible = true;
         document.body.appendChild(instance.$el);
         setTimeout(function () {
             instance.visible = false;
-            document.body.removeChild(instance.$el);
+            setTimeout(function () {
+                document.body.removeChild(instance.$el);
+                callback && callback();
+            }, 500);
         }, opt.duration);
     };
-    Vue.prototype.$toast['show'] = function (massage, option) {
-        Vue.prototype.$toast(massage, option);
-    };
-    Vue.prototype.$toast['info'] = function () {
-        Vue.prototype.$toast(massage, option);
-    };
-    Vue.prototype.$toast['error'] = function () {
-        Vue.prototype.$toast(massage, option);
-    };
-    Vue.prototype.$toast['success'] = function () {
-        Vue.prototype.$toast(massage, option);
-    };
+    //后期扩展
+    ['show', 'success', 'info', 'error'].forEach(function (type) {
+        Vue.prototype.$toast[type] = function (tips, option) {
+            return Vue.prototype.$toast(tips, option);
+        };
+    });
 };
 if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(Toast);
@@ -171,10 +172,9 @@ exports.default = Toast;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_hxj_mobile_toast_vue__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_hxj_mobile_toast_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_hxj_mobile_toast_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_hxj_mobile_toast_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_hxj_mobile_toast_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_3_vue_loader_lib_template_compiler_index_id_data_v_161e4ff2_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_template_index_0_hxj_mobile_toast_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_toast_vue__ = __webpack_require__(0);
+/* empty harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_3_vue_loader_lib_template_compiler_index_id_data_v_14ad37d8_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_template_index_0_toast_vue__ = __webpack_require__(9);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -195,14 +195,14 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_hxj_mobile_toast_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_3_vue_loader_lib_template_compiler_index_id_data_v_161e4ff2_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_template_index_0_hxj_mobile_toast_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_script_index_0_toast_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_3_vue_loader_lib_template_compiler_index_id_data_v_14ad37d8_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_3_vue_loader_lib_selector_type_template_index_0_toast_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/lib/hxj-mobile-toast.vue"
+Component.options.__file = "src/lib/toast.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -211,9 +211,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-161e4ff2", Component.options)
+    hotAPI.createRecord("data-v-14ad37d8", Component.options)
   } else {
-    hotAPI.reload("data-v-161e4ff2", Component.options)
+    hotAPI.reload("data-v-14ad37d8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -244,8 +244,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-161e4ff2\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_postcss-loader@2.1.6@postcss-loader/lib/index.js!../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/selector.js?type=styles&index=0!./hxj-mobile-toast.vue", function() {
-			var newContent = require("!!../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-161e4ff2\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_postcss-loader@2.1.6@postcss-loader/lib/index.js!../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/selector.js?type=styles&index=0!./hxj-mobile-toast.vue");
+		module.hot.accept("!!../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14ad37d8\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_postcss-loader@2.1.6@postcss-loader/lib/index.js!../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/selector.js?type=styles&index=0!./toast.vue", function() {
+			var newContent = require("!!../../node_modules/_css-loader@0.28.11@css-loader/index.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14ad37d8\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_postcss-loader@2.1.6@postcss-loader/lib/index.js!../../node_modules/_sass-loader@6.0.7@sass-loader/lib/loader.js!../../node_modules/_vue-loader@13.7.3@vue-loader/lib/selector.js?type=styles&index=0!./toast.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -263,7 +263,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n@-webkit-keyframes fade-in {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes fade-in {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes fade-out {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n}\n@keyframes fade-out {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n}\n.toast-container {\n  position: absolute;\n  left: 0;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  z-index: 5001;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.toast-container .toast {\n    width: 180px;\n    height: 60px;\n    line-height: 60px;\n    text-align: center;\n    background-color: rgba(0, 0, 0, 0.61);\n    border-radius: 10px;\n    color: #fff;\n}\n.toast-container .fade-in {\n    -webkit-animation-name: fade-in;\n            animation-name: fade-in;\n    -webkit-animation-direction: 0.3s;\n            animation-direction: 0.3s;\n    -webkit-animation-fill-mode: both;\n            animation-fill-mode: both;\n}\n.toast-container .fade-out {\n    -webkit-animation-name: fade-out;\n            animation-name: fade-out;\n    -webkit-animation-direction: 0.3s;\n            animation-direction: 0.3s;\n    -webkit-animation-fill-mode: both;\n            animation-fill-mode: both;\n}\n", ""]);
+exports.push([module.i, "\n@-webkit-keyframes fade-in {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes fade-in {\n0% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n100% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes fade-out {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n}\n@keyframes fade-out {\n0% {\n    opacity: 1;\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    opacity: 0;\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n}\n}\n.toastWrap {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  z-index: 5000 !important;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.toastWrap .fade-in {\n    -webkit-animation-name: fade-in;\n            animation-name: fade-in;\n    -webkit-animation-duration: 0.3s;\n            animation-duration: 0.3s;\n    -webkit-animation-fill-mode: both;\n            animation-fill-mode: both;\n}\n.toastWrap .fade-out {\n    -webkit-animation-name: fade-out;\n            animation-name: fade-out;\n    -webkit-animation-duration: 0.3s;\n            animation-duration: 0.3s;\n    -webkit-animation-fill-mode: both;\n            animation-fill-mode: both;\n}\n.toastWrap .toast {\n    width: 10rem;\n    height: 5.625rem;\n    position: relative;\n    background: rgba(0, 0, 0, 0.6);\n    border-radius: 13px;\n    overflow: hidden;\n    line-height: 5.625rem;\n    text-align: center;\n}\n.toastWrap .toast .icon {\n      font-size: 1.25rem;\n      color: #fff;\n}\n.toastWrap .toast p {\n      font-size: 0.9375rem;\n      color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -922,11 +922,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "toast-container" }, [
+  return _c("section", { staticClass: "toastWrap" }, [
     _c(
       "div",
       { staticClass: "toast", class: [_vm.visible ? "fade-in" : "fade-out"] },
-      [_c("span", [_vm._v(_vm._s(_vm.message))])]
+      [_c("p", [_vm._v(_vm._s(_vm.message))])]
     )
   ])
 }
@@ -937,7 +937,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-161e4ff2", esExports)
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-14ad37d8", esExports)
   }
 }
 

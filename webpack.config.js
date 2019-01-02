@@ -7,18 +7,18 @@ module.exports = {
         publicPath:'',
         filename:'hxj-mobile-toast.js',
         libraryTarget: "umd",
-        library: 'hxjMobileToast'
+        library: 'VueToastM'
     },
     module:{
         rules:[
             {
-                test:/\.js$/,
-                loader:'babel-loader',
-                include:path.join(__dirname,'src'),
-                exclude:/node_modules/,
-                query:{
-                    presets:['env']
-                }
+               test:/\.js$/,
+               loader:'babel-loader',
+               include:path.join(__dirname,'src'),
+               exclude:/node_modules/,
+               query:{
+                   presets:['env']
+               }
             },
             {
                 test:/\.vue$/,

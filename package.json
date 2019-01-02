@@ -1,17 +1,11 @@
 {
   "name": "hxj-mobile-toast",
-  "version": "1.1.1",
-  "description": "a toast plugin for mobile",
-  "main": "index.js",
+  "version": "1.1.3",
+  "description": "",
+  "main": "dist/hxj-mobile-toast.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "toast",
-    "hxj-mobile-toast"
-  ],
-  "author": "hexinjia",
-  "license": "ISC",
   "dependencies": {
     "vue": "^2.3.4",
     "webpack": "^3.1.0"
@@ -34,6 +28,14 @@
   },
   "repository":{
     "type" : "git",
-    "url" : "https://github.com/HEXINJIA/mobile-toast.git"
-  }
+    "url" : "https://github.com/JackySoft/vue-toast.git"
+  },
+  "keywords": [
+    "vuejs",
+    "vue",
+    "vue-component",
+    "component"
+  ],
+  "author": "hexinjia",
+  "license": "hxj"
 }
